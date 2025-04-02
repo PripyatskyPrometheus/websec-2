@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="RU">
+<head>
+    <meta charset="UTF-8">
+    <meta ame="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Расписание преподавателя</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script src="teacher.js"></script>
+    <div class="main-container">
+        <h1>Расписание преподавателя</h1>
+
+        <div class="selector">
+            <select id="selectWeek" class="select-from">
+                <option value="" disabled selected>Неделя</option>
+            </select>
+        </div>
+
+        <div class="week-container">
+            <button id="prevWeek" class="select-from week-button">Прошлая неделя</button>
+            <div id="currentWeek" class="current-week">Эта неделя</div>
+            <button id="nextWeek" class="select-from week-button">Следующая неделя</button>
+        </div>
+
+        <div class="container-legend">
+            <span class="legend-item">
+                <span class="color-box lecture"></span> - Лекция
+            </span>
+            <span class="legend-item">
+                <span class="color-box practice"></span> - Практика
+            </span>
+            <span class="legend-item">
+                <span class="color-box lab"></span> - Лабораторная
+            </span>
+            <span class="legend-item">
+                <span class="color-box exam"></span> - Экзамен
+            </span>
+            <span class="legend-item">
+                <span class="color-box test"></span> - Зачёт
+            </span>
+            <span class="legend-item">
+                <span class="color-box consultation"></span> - Консультация
+            </span>
+            <span class="legend-item">
+                <span class="color-box other"></span> - Другое
+            </span>
+        </div>
+
+        <div id="teacherSchedule"></div>
+    </div>
+</body>
+</html>

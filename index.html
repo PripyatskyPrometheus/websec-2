@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="RU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Расписание</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script src="script.js"></script>
+    <div class="main-container">
+        <h1>Расписание занятий</h1>
+        <div class="selector">
+            <select id="selectGroup" class="select-from">
+                <option value="" disabled selected>Группа</option>
+            </select>
+            <select id="selectWeek" class="select-from">
+                <option value="" disabled selected>Неделя</option>
+            </select>
+        </div>
+
+        <div class="week-container">
+            <button id="prevWeek" class="select-from week-button">Прошлая неделя</button>
+            <div id="currentWeek" class="current-week">Эта неделя</div>
+            <button id="nextWeek" class="select-from week-button">Следующая неделя</button>
+        </div>
+
+        <div class="container-legend">
+            <span class="legend-item">
+                <span class="color-box lecture"></span> - Лекция
+            </span>
+            <span class="legend-item">
+                <span class="color-box practice"></span> - Практика
+            </span>
+            <span class="legend-item">
+                <span class="color-box lab"></span> - Лабораторная
+            </span>
+            <span class="legend-item">
+                <span class="color-box exam"></span> - Экзамен
+            </span>
+            <span class="legend-item">
+                <span class="color-box test"></span> - Зачёт
+            </span>
+            <span class="legend-item">
+                <span class="color-box consultation"></span> - Консультация
+            </span>
+            <span class="legend-item">
+                <span class="color-box other"></span> - Другое
+            </span>
+        </div>
+
+        <table  id="scheduleTable" class="schedule-table">
+            <thead>
+                <tr></tr>
+            </thead>
+            <tbody id="scheduleBody"></tbody>
+        </table>
+    </div>
+</body>
+</html>
