@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch(url);
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                throw new Error(`Cтатус ошибки HTTP: ${response.status}`);
             }
             const data = await response.json();
             callback(data);
