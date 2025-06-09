@@ -38,22 +38,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function renderSchedule(scheduleData) {
         teacherScheduleDiv.innerHTML = '';
-
+    
         if (scheduleData && scheduleData.schedule) {
             const schedule = scheduleData.schedule;
             const dates = scheduleData.dates;
             const daysOfWeek = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
             const timeSlots = Object.keys(schedule);
-
+    
             const table = document.createElement('table');
             table.className = 'schedule-table';
-
+    
             const thead = document.createElement('thead');
             const theadRow = document.createElement('tr');
             const timeHeader = document.createElement('th');
             timeHeader.textContent = 'Время';
             theadRow.appendChild(timeHeader);
-
+    
             for (let i = 0; i < daysOfWeek.length; i++) {
                 const dayHeader = document.createElement('th');
                 dayHeader.textContent = `${daysOfWeek[i]} (${dates[i] || ''})`;
@@ -61,27 +61,49 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             thead.appendChild(theadRow);
             table.appendChild(thead);
-
+    
             const tbody = document.createElement('tbody');
-
+    
             timeSlots.forEach(function(time) {
                 const rowElement = document.createElement('tr');
                 const timeCellElement = document.createElement('td');
                 timeCellElement.textContent = time;
                 rowElement.appendChild(timeCellElement);
-
+    
                 daysOfWeek.forEach(function(day) {
-                    const lessonInfo = schedule[time][day];
+                    const lesson = schedule[time][day];
                     const lessonCellElement = document.createElement('td');
-                    lessonCellElement.innerHTML = lessonInfo || '-';
+                    let lessonType = '';
+                    if (lesson && lesson.toLowerCase().includes('лекция')) {
+                        lessonType = 'lesson-lecture';
+                    } else if (lesson && lesson.toLowerCase().includes('практика')) {
+                        lessonType = 'lesson-practice';
+                    } else if (lesson && lesson.toLowerCase().includes('лабораторная')) {
+                        lessonType = 'lesson-laboratory';
+                    } else if (lesson && lesson.toLowerCase().includes('экзамен')) {
+                        lessonType = 'lesson-exam';
+                    } else if (lesson && lesson.toLowerCase().includes('зачёт')) {
+                        lessonType = 'lesson-test';
+                    } else if (lesson && lesson.toLowerCase().includes('консультация')) {
+                        lessonType = 'lesson-consultation';
+                    } else {
+                        lessonType = 'lesson-other';
+                    }
+    
+                    lessonCellElement.innerHTML = lesson || '-';
+                    if (lessonType) {
+                        lessonCellElement.classList.add(lessonType);
+                    }
+    
                     rowElement.appendChild(lessonCellElement);
                 });
+    
                 tbody.appendChild(rowElement);
             });
-
+    
             table.appendChild(tbody);
             teacherScheduleDiv.appendChild(table);
-
+    
         } else {
             teacherScheduleDiv.innerHTML = '<p>Расписание не найдено</p>';
         }

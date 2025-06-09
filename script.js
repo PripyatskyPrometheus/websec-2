@@ -43,32 +43,54 @@ document.addEventListener('DOMContentLoaded', () => {
         const { schedule, dates } = scheduleData;
         const daysOfWeek = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
         const timeSlots = Object.keys(schedule);
-
+    
         const theadRow = elements.scheduleTable.querySelector('thead tr');
         theadRow.innerHTML = '';
         const timeHeader = document.createElement('th');
         timeHeader.textContent = 'Время';
         theadRow.appendChild(timeHeader);
-
+    
         daysOfWeek.forEach((day, index) => {
             const dayHeader = document.createElement('th');
             dayHeader.textContent = `${day} (${dates[index] || ''})`;
             theadRow.appendChild(dayHeader);
         });
-
+    
         timeSlots.forEach(time => {
             const row = document.createElement('tr');
             const timeCell = document.createElement('td');
             timeCell.textContent = time;
             row.appendChild(timeCell);
-
+    
             daysOfWeek.forEach(day => {
                 const lesson = schedule[time][day];
                 const lessonCell = document.createElement('td');
-                lessonCell.innerHTML = lesson || '-';
+    
+                let lessonType = '';
+                if (lesson && lesson.toLowerCase().includes('лекция')) {
+                    lessonType = 'lesson-lecture';
+                } else if (lesson && lesson.toLowerCase().includes('практика')) {
+                    lessonType = 'lesson-practice';
+                } else if (lesson && lesson.toLowerCase().includes('лабораторная')) {
+                    lessonType = 'lesson-laboratory';
+                } else if (lesson && lesson.toLowerCase().includes('экзамен')) {
+                    lessonType = 'lesson-exam';
+                } else if (lesson && lesson.toLowerCase().includes('зачёт')) {
+                    lessonType = 'lesson-test';
+                } else if (lesson && lesson.toLowerCase().includes('консультация')) {
+                    lessonType = 'lesson-consultation';
+                } else {
+                    lessonType = 'lesson-other';
+                }
+    
+                
+                if (lessonType) {
+                    lessonCell.classList.add(lessonType);
+                }
+                lessonCell.innerHTML = lesson || ' ';
                 row.appendChild(lessonCell);
             });
-
+    
             elements.scheduleBody.appendChild(row);
         });
     };

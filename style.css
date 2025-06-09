@@ -109,7 +109,6 @@ body {
   .consultation { background-color: #1abc9c; }
   .other { background-color: #ffc800; } 
   
-  /* Таблица расписания */
   .schedule-table {
     width: 100%;
     border-collapse: collapse;
@@ -165,3 +164,31 @@ body {
         padding: 5px;
     }
   }
+
+  .lesson-lecture {
+    color: #23ff40;
+}
+
+.lesson-practice {
+    color: #3498db;
+}
+
+.lesson-laboratory {
+    color: #fd70ea;
+}
+
+.lesson-exam {
+    color: #6078f0;
+}
+
+.lesson-test {
+    color: #f3ff19;
+}
+
+.lesson-consultation {
+    color: #1abc9c;
+}
+
+.lesson-other {
+    color: #ffc800;
+}
